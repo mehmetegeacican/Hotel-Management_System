@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import CreateGuestModal from '../Modals/CreateGuestModal';
 class GuestTable extends Component {
 
    constructor() {
         super();
         this.state = {
-            guests : []
+            guests : [],
+            createGuestModal: null
         };
    }
 
@@ -24,6 +26,44 @@ class GuestTable extends Component {
     getGuests = () => {
         console.log(this.state.guests);
     }
+
+    postGuests = (name,email,country) => {
+        const requestOptions = {
+            method: "POST",
+            mode: "no-cors",
+            body: {
+                "id": this.state.guests.length + 1,
+                "name":name,
+                "email":email,
+                "country":country
+            }
+        }
+        axios.post('http://localhost:8080/api/guests',requestOptions.body)
+            .then(response => response.data).then((data) => {
+                this.componentDidMount();
+            })
+    }
+
+    closeAddMenu = () => {
+        console.log("Modal has been closed");
+        this.setState({
+            createGuestModal:null
+        })
+    }
+
+    openAddMenu = () => {
+        console.log("Modal menu has been opened");
+        this.setState({
+            createGuestModal: 
+            <CreateGuestModal 
+                close = {this.closeAddMenu}
+                save = {this.postGuests}
+            />
+        })
+    }
+
+    
+
     createTableData = () => {
         return this.state.guests.map((item,i) => {
             return (
@@ -34,7 +74,8 @@ class GuestTable extends Component {
                     <td> {item.country} </td>
                     <td> Some Hotel Data</td>
                     <td> Some Hotel Room</td>
-                    <td><a className="button is-small is-link" onClick={() => this.getGuests()}>Inspect</a></td>
+                    <td><a className="button is-small is-link" onClick={() => console.log("asdasdas")}>Inspect</a></td>
+                    <td><a className="button is-small is-danger" onClick={() => console.log("asdasdas")}>Delete</a></td>
                 </tr>
             )
         })
@@ -77,8 +118,8 @@ class GuestTable extends Component {
                         </div>
                         <div className="tile is-parent">
                             <article className="tile is-child box">
-                                <p className="title">19</p>
-                                <p className="subtitle">Exceptions</p>
+                                <p className="title">Add New Guest</p>
+                                <p className="subtitle"><button className="button is-link" onClick={() => this.openAddMenu()}>Add Icon</button></p>
                             </article>
                         </div>
                     </div>
@@ -106,6 +147,7 @@ class GuestTable extends Component {
                                             <td>Guest Hotel </td>
                                             <td>Guest Room</td>
                                             <td>Inspect</td>
+                                            <td>Delete</td>
                                         </tr>
                                         {this.createTableData()}
                                     </tbody>
@@ -114,6 +156,7 @@ class GuestTable extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.createGuestModal}
             </section>
 
         </section>

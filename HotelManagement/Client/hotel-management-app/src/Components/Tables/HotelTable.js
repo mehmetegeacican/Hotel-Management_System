@@ -97,14 +97,14 @@ class HotelTable extends Component {
                     <div className="card-table">
                         <div className="content">
                             <table className="table is-fullwidth is-striped">
-                            <tbody>
-                                                    <tr>
-                                                        <td width="5%"><i className="fa fa-bell-o"></i></td>
-                                                        <td>Hotel Name</td>
-                                                        <td>Hotel Location</td>
-                                                        <td>Inspect</td>
-                                                    </tr>
-                                                    {this.createTableData()}
+                                <tbody>
+                                    <tr>
+                                        <td width="5%"><i className="fa fa-bell-o"></i></td>
+                                        <td>Hotel Name</td>
+                                        <td>Hotel Location</td>
+                                        <td>Inspect</td>
+                                    </tr>
+                                    {this.createTableData()}
                                 </tbody>
                             </table>
                         </div>
