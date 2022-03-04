@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import CreateGuestModal from '../Modals/CreateGuestModal';
+import DeleteModal from '../Modals/DeleteModal';
 class GuestTable extends Component {
 
    constructor() {
         super();
         this.state = {
             guests : [],
-            createGuestModal: null
+            createGuestModal: null,
+            deleteModal: null
         };
    }
 
@@ -44,10 +46,23 @@ class GuestTable extends Component {
             })
     }
 
-    closeAddMenu = () => {
+    deleteGuests = (id) => {
+        const requestOptions = {
+            method: "DELETE",
+            mode: "no-cors",
+        }
+        axios.delete(`http://localhost:8080/api/guests/${id}`,requestOptions)
+        .then(response => response.data).then((data) => {
+            this.componentDidMount();
+            this.closeModals();
+        })
+    }
+
+    closeModals = () => {
         console.log("Modal has been closed");
         this.setState({
-            createGuestModal:null
+            createGuestModal:null,
+            deleteModal:null
         })
     }
 
@@ -56,11 +71,22 @@ class GuestTable extends Component {
         this.setState({
             createGuestModal: 
             <CreateGuestModal 
-                close = {this.closeAddMenu}
+                close = {this.closeModals}
                 save = {this.postGuests}
             />
         })
     }
+
+    openDeleteModal = (id) => {
+        console.log("Delete Modal has been opened");
+        this.setState({
+            deleteModal: <DeleteModal 
+                            close = {this.closeModals}
+                            delete = {this.deleteGuests}
+                            id = {id}
+                         />
+        })
+    } 
 
     
 
@@ -75,7 +101,7 @@ class GuestTable extends Component {
                     <td> Some Hotel Data</td>
                     <td> Some Hotel Room</td>
                     <td><a className="button is-small is-link" onClick={() => console.log("asdasdas")}>Inspect</a></td>
-                    <td><a className="button is-small is-danger" onClick={() => console.log("asdasdas")}>Delete</a></td>
+                    <td><a className="button is-small is-danger" onClick={() => this.openDeleteModal(item.id)}>Delete</a></td>
                 </tr>
             )
         })
@@ -157,6 +183,7 @@ class GuestTable extends Component {
                     </div>
                 </div>
                 {this.state.createGuestModal}
+                {this.state.deleteModal}
             </section>
 
         </section>
