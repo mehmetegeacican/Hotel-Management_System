@@ -26,7 +26,14 @@ class GuestTable extends Component {
         })
     }
     getGuests = () => {
-        console.log(this.state.guests);
+        const requestOptions = {
+            method: "GET",
+            mode : "no-cors"
+        }
+        axios.get('http://localhost:8080/api/guests',requestOptions)
+        .then(response => response.data).then((data) => {
+            console.log(data);
+        })
     }
 
     postGuests = (name,email,country) => {
@@ -59,7 +66,7 @@ class GuestTable extends Component {
     }
 
     closeModals = () => {
-        console.log("Modal has been closed");
+        // console.log("Modal has been closed");
         this.setState({
             createGuestModal:null,
             deleteModal:null
@@ -67,7 +74,7 @@ class GuestTable extends Component {
     }
 
     openAddMenu = () => {
-        console.log("Modal menu has been opened");
+        // console.log("Modal menu has been opened");
         this.setState({
             createGuestModal: 
             <CreateGuestModal 
@@ -78,7 +85,7 @@ class GuestTable extends Component {
     }
 
     openDeleteModal = (id) => {
-        console.log("Delete Modal has been opened");
+        // console.log("Delete Modal has been opened");
         this.setState({
             deleteModal: <DeleteModal 
                             close = {this.closeModals}
@@ -98,9 +105,9 @@ class GuestTable extends Component {
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td> {item.country} </td>
-                    <td> Some Hotel Data</td>
+                    <td> Some Hotel Name </td>
                     <td> Some Hotel Room</td>
-                    <td><a className="button is-small is-link" onClick={() => console.log("asdasdas")}>Inspect</a></td>
+                    <td><a className="button is-small is-link" onClick={() => this.getGuests()}>Inspect</a></td>
                     <td><a className="button is-small is-danger" onClick={() => this.openDeleteModal(item.id)}>Delete</a></td>
                 </tr>
             )

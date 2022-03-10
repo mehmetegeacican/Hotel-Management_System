@@ -59,7 +59,7 @@ class CreateGuestModal extends Component {
 
   saveGuest = () => {
       this.props.save(this.state.name,this.state.email,this.state.country);
-      console.log("Saved");
+      //console.log("Saved");
       this.props.close();
   }
   
@@ -77,14 +77,14 @@ class CreateGuestModal extends Component {
                     <div className="field">
                         <label className="label">Name</label>
                         <div className="control">
-                            <input className="input" type="text" placeholder="Enter the New Guests Name Here" onChange={(event) => this.onChangeHandleName(event.target.value)}/>
+                            <input className="input is-rounded" type="text" placeholder="Enter the New Guests Name Here" onChange={(event) => this.onChangeHandleName(event.target.value)}/>
                         </div>
                     </div>
                     <div className="field">
                         <label className="label">Email</label>
                         <div className="control">
                             <input 
-                                className="input"
+                                className="input is-rounded"
                                 type="text" 
                                 placeholder="Enter the New Guests Email Here" 
                                 onChange={(event) => this.onChangeHandleEmail(event.target.value)}
@@ -110,8 +110,8 @@ class CreateGuestModal extends Component {
                     </div>
                     <div className="field">
                         <label className="label">Hotel</label>
-                        <div className="control is-expanded">
-                            <div className="select is-fullwidth">
+                        <div className="control is-expanded ">
+                            <div className="select is-fullwidth is-rounded">
                                 {this.displayHotels()}
                             </div>
                         </div>
@@ -119,7 +119,7 @@ class CreateGuestModal extends Component {
                     <div className="field">
                         <label className="label">Room</label>
                         <div className="control is-expanded">
-                            <div className="select is-fullwidth">
+                            <div className="select is-fullwidth is-rounded">
                                 <select name= "room" >
                                     <option value = "none"> Room will be added </option>
                                 </select> 
