@@ -1,6 +1,7 @@
 import React from 'react';
 import HotelTable from "../Tables/HotelTable";
 import GuestTable from "../Tables/GuestTable";
+import ReservationsTable from "../Tables/ReservationsTable";
 
 class HomePage extends React.Component {
 
@@ -35,17 +36,15 @@ class HomePage extends React.Component {
           activePanel: <GuestTable/>
         })
         break;
+      case "res-tab":
+        this.setState({
+          activePanel:  <ReservationsTable/>
+        })
+        break;
       case "room-tab":
         this.setState({
           activePanel: (
-            <h1> This is rooms table</h1>
-          )
-        })
-        break;
-      case "payment-tab":
-        this.setState({
-          activePanel: (
-            <h2> This is payments table </h2>
+            <h2> This is rooms table </h2>
           )
         })
         break;
@@ -59,8 +58,8 @@ class HomePage extends React.Component {
               <ul>
                 <li className="is-active" id = "hotel-tab" onClick={() => this.changeActivePanel("hotel-tab")}><a>Hotels</a></li>
                 <li id = "guest-tab" onClick={() => this.changeActivePanel("guest-tab")}><a>Guests</a></li>
+                <li id = "res-tab" onClick={() => this.changeActivePanel("res-tab")}><a>Reservations</a></li>
                 <li id = "room-tab" onClick={() => this.changeActivePanel("room-tab")}><a>Rooms</a></li>
-                <li id = "payment-tab" onClick={() => this.changeActivePanel("payment-tab")}><a>Payments</a></li>
               </ul>
             </div>
             <div className='tab-content'>

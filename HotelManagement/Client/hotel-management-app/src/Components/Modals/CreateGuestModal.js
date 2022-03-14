@@ -108,25 +108,6 @@ class CreateGuestModal extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="field">
-                        <label className="label">Hotel</label>
-                        <div className="control is-expanded ">
-                            <div className="select is-fullwidth is-rounded">
-                                {this.displayHotels()}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label className="label">Room</label>
-                        <div className="control is-expanded">
-                            <div className="select is-fullwidth is-rounded">
-                                <select name= "room" >
-                                    <option value = "none"> Room will be added </option>
-                                </select> 
-                            </div>
-                        </div>
-                    </div>
-                    
                     
                 </section>
                 <footer className="modal-card-foot">

@@ -2,6 +2,12 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import CreateGuestModal from '../Modals/CreateGuestModal';
 import DeleteModal from '../Modals/DeleteModal';
+import { connect } from 'react-redux';
+
+import {
+    postGuests,
+    getGuests
+} from "../../Actions/GuestActions"
 class GuestTable extends Component {
 
    constructor() {
@@ -105,8 +111,6 @@ class GuestTable extends Component {
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td> {item.country} </td>
-                    <td> Some Hotel Name </td>
-                    <td> Some Hotel Room</td>
                     <td><a className="button is-small is-link" onClick={() => this.getGuests()}>Inspect</a></td>
                     <td><a className="button is-small is-danger" onClick={() => this.openDeleteModal(item.id)}>Delete</a></td>
                 </tr>
@@ -177,8 +181,6 @@ class GuestTable extends Component {
                                             <td>Guest Name</td>
                                             <td>Guest Email</td>
                                             <td>Guest Country</td>
-                                            <td>Guest Hotel </td>
-                                            <td>Guest Room</td>
                                             <td>Inspect</td>
                                             <td>Delete</td>
                                         </tr>
@@ -198,6 +200,7 @@ class GuestTable extends Component {
     );
   }
 }
+
 
 export default GuestTable;
   
