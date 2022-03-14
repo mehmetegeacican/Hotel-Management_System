@@ -2,6 +2,7 @@ import React from 'react';
 import HotelTable from "../Tables/HotelTable";
 import GuestTable from "../Tables/GuestTable";
 import ReservationsTable from "../Tables/ReservationsTable";
+import RoomTable from "../Tables/RoomTable";
 
 class HomePage extends React.Component {
 
@@ -44,7 +45,7 @@ class HomePage extends React.Component {
       case "room-tab":
         this.setState({
           activePanel: (
-            <h2> This is rooms table </h2>
+            <RoomTable/>
           )
         })
         break;

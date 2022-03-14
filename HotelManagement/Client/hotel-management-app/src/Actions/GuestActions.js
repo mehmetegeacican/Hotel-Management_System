@@ -14,6 +14,14 @@ export const getGuests = () => {
  * @param {*String} email THE EMAIL OF THE NEW GUEST
  * @param {*String} country THE COUNTRY OF THE NEW GUEST
  */
-export const postGuests = (name,email,country) => (dispatch) => {
+export const postGuests = (name,email,country) => {
+
+}
+
+/**
+ * THIS FUNCTION DELETES A GUEST BY ID
+ * @param {*} guestId THE TO-BE-DELETED GUEST-ID
+ */
+export const deleteGuests = (guestId) => {
 
 }
