@@ -2,31 +2,31 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class RoomTable extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            rooms:[]
+            rooms: []
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const requestOptions = {
             method: "GET",
-            mode : "no-cors"
+            mode: "no-cors"
         }
-        axios.get('http://localhost:8080/api/rooms',requestOptions)
-        .then(response => response.data).then((data) => {
-            this.setState({
-                rooms:data
+        axios.get('http://localhost:8080/api/rooms', requestOptions)
+            .then(response => response.data).then((data) => {
+                this.setState({
+                    rooms: data
+                })
             })
-        })
     }
 
     createTableData = () => {
-        return this.state.rooms.map((item,i) => {
+        return this.state.rooms.map((item, i) => {
             return (
-                <tr key={i+ 1}>
-                    <td>{i + 1}</td>
+                <tr key={i + 1}>
+                    <td>{item.id}</td>
                     <td>{item.hotel.hotel_name}</td>
                     <td>{item.room_no}</td>
                     <td>{item.type}</td>
@@ -39,11 +39,11 @@ class RoomTable extends Component {
         console.log(this.state.rooms);
     }
 
-  render(){
-    return (
-        <section>
+    render() {
+        return (
+            <section>
 
-            <section className="hero is-link welcome is-small">
+                <section className="hero is-link welcome is-small">
                     <div className="hero-body is-boxed">
                         <div className="container">
                             <h1 className="title">
@@ -54,9 +54,9 @@ class RoomTable extends Component {
                             </h2>
                         </div>
                     </div>
-            </section>
+                </section>
 
-            <section className="info-tiles">
+                <section className="info-tiles">
                     <div className="tile is-ancestor has-text-centered">
                         <div className="tile is-parent">
                             <article className="tile is-child box">
@@ -83,43 +83,42 @@ class RoomTable extends Component {
                             </article>
                         </div>
                     </div>
-            </section>
-            
-            <section className='hero is-halfheight'>
-                <div className='hero-header'>
-                    <div className="card events-card">
-                    <header className="card-header">
-                        <p className="card-header-title is-vcentered">Rooms</p>
-                    </header>
-                    <br/>
-                    <div>
-                        <input className="input is-link" type="text" placeholder="Search Hotel"></input>
-                    </div>
-                    <div className="card-table">
-                        <div className="content">
-                            <table className="table is-fullwidth is-striped">
-                                <tbody>
-                                    <tr>
-                                        <td width="5%"><i className="fa fa-bell-o"></i></td>
-                                        <td>Room Hotel</td>
-                                        <td>Room Number</td>
-                                        <td>Room Type</td>
-                                        <td>Inspect</td>
-                                    </tr>
-                                    {this.createTableData()}
-                                </tbody>
-                            </table>
+                </section>
+
+                <section className='hero is-halfheight'>
+                    <div className='hero-header'>
+                        <div className="card events-card">
+                            <header className="card-header">
+                                <p className="card-header-title is-vcentered">Rooms</p>
+                            </header>
+                            <br />
+                            <div>
+                                <input className="input is-link" type="text" placeholder="Search Hotel"></input>
+                            </div>
+                            <div className="card-table">
+                                <div className="content">
+                                    <table className="table is-fullwidth is-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td width="5%"><i className="fa fa-bell-o"></i></td>
+                                                <td>Room Hotel</td>
+                                                <td>Room Number</td>
+                                                <td>Room Type</td>
+                                                <td>Inspect</td>
+                                            </tr>
+                                            {this.createTableData()}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
+                </section>
+
             </section>
-            
-        </section>
-        
-    );
-  }
+
+        );
+    }
 }
 
 export default RoomTable;
-  

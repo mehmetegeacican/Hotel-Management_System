@@ -2,6 +2,8 @@ package com.example.demo.room;
 
 
 import com.example.demo.hotel.Hotel;
+import com.sun.istack.NotNull;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -10,11 +12,15 @@ import javax.persistence.*;
 public class Room {
     @Id
     private long id;
+
     private String type;
+
     private String room_no;
 
     @OneToOne
-    @JoinColumn(name = "hotel_id",referencedColumnName = "id")
+    @JoinColumns({
+            @JoinColumn(name="hotel_id",referencedColumnName = "id")
+    })
     private Hotel hotel;
 
     public Room() {

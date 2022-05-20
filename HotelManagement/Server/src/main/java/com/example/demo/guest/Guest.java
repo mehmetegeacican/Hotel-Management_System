@@ -1,4 +1,6 @@
 package com.example.demo.guest;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,6 +9,8 @@ public class Guest {
 
     @Id
     private long id;
+    @Column(nullable = false)
+    @NotNull
     private String name;
     private String email;
     private String country;

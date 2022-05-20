@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class CreateGuestModal extends Component {
+class UpdateGuestModal extends Component {
 
 
     constructor(props) {
         super(props);
         this.state = {
             hotels: [],
-            email: "",
-            name: "",
-            country: ""
+            id: this.props.id,
+            email: this.props.email,
+            name: this.props.name,
+            country: this.props.country
         }
     }
 
@@ -58,7 +59,7 @@ class CreateGuestModal extends Component {
     }
 
     saveGuest = () => {
-        this.props.save(this.state.name, this.state.email, this.state.country);
+        this.props.save(this.state.id, this.state.name, this.state.email, this.state.country);
         //console.log("Saved");
         this.props.close();
     }
@@ -77,7 +78,7 @@ class CreateGuestModal extends Component {
                         <div className="field">
                             <label className="label">Name</label>
                             <div className="control">
-                                <input className="input is-rounded" type="text" placeholder="Enter the New Guests Name Here" onChange={(event) => this.onChangeHandleName(event.target.value)} />
+                                <input className="input is-rounded" type="text" placeholder="Enter the New Guests Name Here" onChange={(event) => this.onChangeHandleName(event.target.value)} value={this.state.name} />
                             </div>
                         </div>
                         <div className="field">
@@ -86,6 +87,7 @@ class CreateGuestModal extends Component {
                                 <input
                                     className="input is-rounded"
                                     type="text"
+                                    value={this.state.email}
                                     placeholder="Enter the New Guests Email Here"
                                     onChange={(event) => this.onChangeHandleEmail(event.target.value)}
                                 />
@@ -95,7 +97,7 @@ class CreateGuestModal extends Component {
                             <label className="label">Country</label>
                             <div className="control is-expanded">
                                 <div className="select is-fullwidth is-rounded">
-                                    <select name="country" onChange={(e) => this.changeCountry(e.target.value)}>
+                                    <select name="country" onChange={(e) => this.changeCountry(e.target.value)} value={this.state.country}>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Bolivia">Bolivia</option>
                                         <option value="Brazil">Brazil</option>
@@ -120,4 +122,4 @@ class CreateGuestModal extends Component {
     }
 }
 
-export default CreateGuestModal;
+export default UpdateGuestModal;

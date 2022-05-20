@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class SideMenu extends Component {
-  render(){
-    return (
+    render() {
+        return (
 
             <aside className="menu is-hidden-mobile">
                 <p className="menu-label">
@@ -24,8 +24,8 @@ class SideMenu extends Component {
                     <li><a>Reports</a></li>
                 </ul>
             </aside>
-    );
-  }
+        );
+    }
 }
 
 export default SideMenu;

@@ -17,7 +17,9 @@ public class Hotel {
             generator = "hotel_sequence"
     )
     private long id;
-    private String hotel_name;
+    @Column(name = "hotel_name")
+    private String hotelname;
+    @Column(name = "location")
     private String location;
     //Constructors
     // Null
@@ -26,12 +28,12 @@ public class Hotel {
     //All
     public Hotel(long id, String hotel_name, String location) {
         this.id = id;
-        this.hotel_name = hotel_name;
+        this.hotelname = hotel_name;
         this.location = location;
     }
     //Without id
     public Hotel(String hotel_name, String location) {
-        this.hotel_name = hotel_name;
+        this.hotelname = hotel_name;
         this.location = location;
     }
     //Getters and Setters
@@ -42,10 +44,10 @@ public class Hotel {
         this.id = id;
     }
     public String getHotel_name() {
-        return hotel_name;
+        return hotelname;
     }
     public void setHotel_name(String hotel_name) {
-        this.hotel_name = hotel_name;
+        this.hotelname = hotel_name;
     }
     public String getLocation() {
         return location;
@@ -61,7 +63,7 @@ public class Hotel {
     public String toString() {
         return "Hotel{" +
                 "id=" + id +
-                ", hotel_name='" + hotel_name + '\'' +
+                ", hotelname='" + hotelname + '\'' +
                 ", location='" + location + '\'' +
                 '}';
     }

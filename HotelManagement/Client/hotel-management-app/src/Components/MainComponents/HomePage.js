@@ -6,11 +6,11 @@ import RoomTable from "../Tables/RoomTable";
 
 class HomePage extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      activePanel : ( 
-      <HotelTable/>
+      activePanel: (
+        <HotelTable />
       )
     };
   }
@@ -26,46 +26,46 @@ class HomePage extends React.Component {
         }
       }
     });
-    switch(id) {
+    switch (id) {
       case "hotel-tab":
         this.setState({
-          activePanel : <HotelTable/>
+          activePanel: <HotelTable />
         })
         break;
       case "guest-tab":
         this.setState({
-          activePanel: <GuestTable/>
+          activePanel: <GuestTable />
         })
         break;
       case "res-tab":
         this.setState({
-          activePanel:  <ReservationsTable/>
+          activePanel: <ReservationsTable />
         })
         break;
       case "room-tab":
         this.setState({
           activePanel: (
-            <RoomTable/>
+            <RoomTable />
           )
         })
         break;
     };
-    
+
   }
-  render(){
+  render() {
     return (
       <section>
-            <div className="tabs is-boxed is-centered main-menu" id="nav">
-              <ul>
-                <li className="is-active" id = "hotel-tab" onClick={() => this.changeActivePanel("hotel-tab")}><a>Hotels</a></li>
-                <li id = "guest-tab" onClick={() => this.changeActivePanel("guest-tab")}><a>Guests</a></li>
-                <li id = "res-tab" onClick={() => this.changeActivePanel("res-tab")}><a>Reservations</a></li>
-                <li id = "room-tab" onClick={() => this.changeActivePanel("room-tab")}><a>Rooms</a></li>
-              </ul>
-            </div>
-            <div className='tab-content'>
-                  {this.state.activePanel}
-            </div>
+        <div className="tabs is-boxed is-centered main-menu" id="nav">
+          <ul>
+            <li className="is-active" id="hotel-tab" onClick={() => this.changeActivePanel("hotel-tab")}><a>Hotels</a></li>
+            <li id="guest-tab" onClick={() => this.changeActivePanel("guest-tab")}><a>Guests</a></li>
+            <li id="res-tab" onClick={() => this.changeActivePanel("res-tab")}><a>Reservations</a></li>
+            <li id="room-tab" onClick={() => this.changeActivePanel("room-tab")}><a>Rooms</a></li>
+          </ul>
+        </div>
+        <div className='tab-content'>
+          {this.state.activePanel}
+        </div>
       </section>
     );
   }

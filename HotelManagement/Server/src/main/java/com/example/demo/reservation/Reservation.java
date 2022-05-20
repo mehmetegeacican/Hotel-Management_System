@@ -4,6 +4,7 @@ package com.example.demo.reservation;
 
 import com.example.demo.guest.Guest;
 import com.example.demo.hotel.Hotel;
+import com.example.demo.room.Room;
 
 import javax.persistence.*;
 
@@ -18,18 +19,18 @@ public class Reservation {
     private Guest guest;
 
     @OneToOne
-    @JoinColumn(name = "hotel_id",referencedColumnName = "id")
-    private Hotel hotel;
+    @JoinColumn(name = "room_id",referencedColumnName = "id")
+    private Room room;
 
-    public Reservation(long id, Guest guest, Hotel hotel) {
+    public Reservation(long id, Guest guest, Room room) {
         this.id = id;
         this.guest = guest;
-        this.hotel = hotel;
+        this.room = room;
     }
 
-    public Reservation(Guest guest, Hotel hotel) {
+    public Reservation(Guest guest, Room room) {
         this.guest = guest;
-        this.hotel = hotel;
+        this.room = room;
     }
 
     public Reservation() {
@@ -43,6 +44,14 @@ public class Reservation {
         this.id = id;
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     public Guest getGuest() {
         return guest;
     }
@@ -51,20 +60,13 @@ public class Reservation {
         this.guest = guest;
     }
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
                 ", guest=" + guest +
-                ", hotel=" + hotel +
+                ", room=" + room +
                 '}';
     }
 }
