@@ -2,10 +2,7 @@ package com.example.demo.reservation;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +17,10 @@ public class ReservationController {
     public List<Reservation> getReservations(){
         List<Reservation> res = reservationService.getReservations();
         return res;
+    }
+
+    @DeleteMapping(path = "{reservationId}")
+    public void deleteReservation(@PathVariable("reservationId") Long id){
+        reservationService.deleteReservations(id);
     }
 }

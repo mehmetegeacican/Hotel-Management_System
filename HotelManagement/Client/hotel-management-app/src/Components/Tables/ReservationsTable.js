@@ -45,6 +45,18 @@ class ReservationsTable extends Component {
         })
     }
 
+    deleteReservations = (id) => {
+        const requestOptions = {
+            method: "DELETE",
+            mode: "no-cors",
+        }
+        axios.delete(`http://localhost:8080/api/reservations/${id}`, requestOptions)
+            .then(response => response.data).then((data) => {
+                this.componentDidMount();
+                this.closeModals();
+            })
+    }
+
     createTableData = () => {
         return this.state.reservations.map((item, i) => {
             return (

@@ -13,4 +13,14 @@ public class ReservationService {
     public ReservationService(ReservationRepository reservationRepository){ this.reservationRepository = reservationRepository; }
 
     public List<Reservation> getReservations(){ return reservationRepository.findAll();}
+
+    public void deleteReservations(Long id) {
+        boolean exists = reservationRepository.existsById(id);
+        if(exists){
+            reservationRepository.deleteById(id);
+        }
+        else{
+            throw new IllegalStateException("Reservation with id" + id + "does not exist");
+        }
+    }
 }
