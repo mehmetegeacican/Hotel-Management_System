@@ -66,9 +66,6 @@ class GuestTable extends Component {
         axios.post('http://localhost:8080/api/guests', requestOptions.body)
             .then(response => response.data).then((data) => {
                 this.componentDidMount();
-
-                console.log(this.props);
-
             })
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.reservation;
 
 
+import com.example.demo.guest.Guest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,5 +23,10 @@ public class ReservationController {
     @DeleteMapping(path = "{reservationId}")
     public void deleteReservation(@PathVariable("reservationId") Long id){
         reservationService.deleteReservations(id);
+    }
+
+    @PostMapping
+    public void registerReservation(@RequestBody Reservation reservation){
+        reservationService.addNewReservation(reservation);
     }
 }

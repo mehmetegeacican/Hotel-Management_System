@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import CreateReservationModal from '../Modals/CreateReservationModal';
 import DeleteModal from '../Modals/DeleteModal';
 
 class ReservationsTable extends Component {
@@ -29,7 +30,7 @@ class ReservationsTable extends Component {
     closeModals = () => {
         // console.log("Modal has been closed");
         this.setState({
-            createGuestModal: null,
+            createReservationModal: null,
             deleteModal: null
         })
     }
@@ -39,9 +40,18 @@ class ReservationsTable extends Component {
         this.setState({
             deleteModal: <DeleteModal
                 close={this.closeModals}
-                delete={this.deleteGuests}
+                delete={this.deleteReservations}
                 id={id}
             />
+        })
+    }
+
+    openCreateModal = () => {
+        this.setState({
+            createReservationModal : <CreateReservationModal
+                                        close = {this.closeModals}
+                                        save = {this.saveReservations}
+                                    />
         })
     }
 
@@ -57,6 +67,24 @@ class ReservationsTable extends Component {
             })
     }
 
+    saveReservations = (guest,room) => {
+        if(guest && room){
+            const requestOptions = {
+                method: "POST",
+                mode: "no-cors",
+                body: {
+                    "id": this.state.reservations.length + 1,
+                    "guest": guest,
+                    "room": room
+                }
+            }
+            axios.post('http://localhost:8080/api/reservations', requestOptions.body)
+                .then(response => response.data).then((data) => {
+                    this.componentDidMount();
+                })
+        }
+    }
+
     createTableData = () => {
         return this.state.reservations.map((item, i) => {
             return (
@@ -66,7 +94,7 @@ class ReservationsTable extends Component {
                     <td>{item.guest.email}</td>
                     <td> {item.room.hotel.hotel_name} </td>
                     <td> {item.room.room_no}</td>
-                    <td><a className="button is-small is-link" onClick={() => console.log("Will be added")}>Inspect</a></td>
+                    <td><a className="button is-small is-link" onClick={() => console.log("aaa")}>Inspect</a></td>
                     <td><a className="button is-small is-danger" onClick={() => this.openDeleteModal(item.id)}>Delete</a></td>
                 </tr>
             )
@@ -99,7 +127,7 @@ class ReservationsTable extends Component {
                         <div className="tile is-parent">
                             <article className="tile is-child box">
                                 <p className="title">Add New Reservation</p>
-                                <p className="subtitle"><button className="button is-link" onClick={() => console.log("New Reservation")}>Add Icon</button></p>
+                                <p className="subtitle"><button className="button is-link" onClick={() => this.openCreateModal()}>Add Icon</button></p>
                             </article>
                         </div>
                     </div>
@@ -136,6 +164,7 @@ class ReservationsTable extends Component {
                         </div>
                     </div>
                     {this.state.deleteModal}
+                    {this.state.createReservationModal}
                 </section>
 
             </section>
